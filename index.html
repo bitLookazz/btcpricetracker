@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Price Tracker</title>
+</head>
+<body>
+    <h1>Bitcoin Price:</h1>
+    <p id="price">Loading...</p>
+
+    <script>
+        async function fetchPrice() {
+            let response = await fetch('http://127.0.0.1:5000/price');
+            let data = await response.json();
+            document.getElementById('price').innerText = `$${parseFloat(data.price).toFixed(2)}`;
+        }
+
+        fetchPrice();
+        setInterval(fetchPrice, 5000); // Refresh every 5 seconds
+    </script>
+</body>
+</html>
